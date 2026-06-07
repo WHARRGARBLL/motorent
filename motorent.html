@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MotoRent — Homepage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- ============================================================
+     MotoRent — Homepage
+     Brand: #063E56 (teal) · #05C96A (green) · #F4F4F4 (mist) · #0F172A (ink)
+     Type:  Familjen Grotesk (display, Neue Montreal substitute) · Manrope (body)
+     ============================================================ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MotoRent — Rent any vehicle. List yours. Move freely.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --teal: #063E56;        --teal-90: #0A4A66; --teal-12: rgba(6,62,86,.12);
+      --green: #05C96A;       --green-dk: #03A557; --green-12: rgba(5,201,106,.12);
+      --mist: #F4F4F4;        --ink: #0F172A;      --ink-70: rgba(15,23,42,.70);
+      --ink-50: rgba(15,23,42,.52); --ink-30: rgba(15,23,42,.30);
+      --line: rgba(6,62,86,.10);
+      --white: #FFFFFF;
+      --r-xl: 32px; --r-lg: 24px; --r-md: 18px; --r-sm: 12px; --r-pill: 999px;
+      --shadow-card: 0 1px 2px rgba(6,62,86,.04), 0 12px 32px rgba(6,62,86,.07);
+      --shadow-hi: 0 8px 24px rgba(6,62,86,.10), 0 32px 64px rgba(6,62,86,.12);
+      --shadow-float: 0 8px 28px rgba(6,62,86,.22);
+      --max: 1240px;
+      --disp: "Familjen Grotesk", system-ui, sans-serif;
+      --body: "Manrope", system-ui, sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box }
+    html { scroll-behavior: smooth }
+    body {
+      font-family: var(--body); color: var(--ink); background: var(--white);
+      -webkit-font-smoothing: antialiased; line-height: 1.5; overflow-x: hidden;
+    }
+    img { display: block; max-width: 100% }
+    a { text-decoration: none; color: inherit }
+    h1, h2, h3, h4 { font-family: var(--disp); font-weight: 500; line-height: 1.02; letter-spacing: -0.02em }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px }
+    .eyebrow { font: 600 12px/1 var(--body); letter-spacing: .18em; text-transform: uppercase; color: var(--green-dk); display: inline-flex; align-items: center; gap: 9px }
+    .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green) }
+    .btn { display: inline-flex; align-items: center; gap: 9px; font: 600 15px/1 var(--body); padding: 15px 26px; border-radius: var(--r-pill); cursor: pointer; border: none; transition: transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .2s }
+    .btn svg { width: 17px; height: 17px }
+    .btn-primary { background: var(--green); color: #022B14; box-shadow: 0 6px 18px rgba(5,201,106,.32) }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(5,201,106,.42) }
+    .btn-dark { background: var(--teal); color: #fff }
+    .btn-dark:hover { transform: translateY(-2px); background: var(--teal-90) }
+    .btn-ghost { background: transparent; color: var(--teal); border: 1.5px solid var(--line) }
+    .btn-ghost:hover { border-color: var(--teal); background: var(--white); transform: translateY(-2px) }
+    .btn-white { background: #fff; color: var(--teal) }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.18) }
+
+    /* reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1) }
+    .reveal.in { opacity: 1; transform: none }
+
+    /* ============ NAV ============ */
+    header.nav { position: sticky; top: 0; z-index: 60; backdrop-filter: saturate(1.4) blur(14px); background: rgba(255,255,255,.78); border-bottom: 1px solid transparent; transition: border-color .3s, background .3s }
+    header.nav.scrolled { border-color: var(--line); background: rgba(255,255,255,.9) }
+    .nav-in { display: flex; align-items: center; justify-content: space-between; height: 74px; max-width: var(--max); margin: 0 auto; padding: 0 28px }
+    .logo { display: flex; align-items: center; gap: 10px; font-family: var(--disp); font-weight: 600; font-size: 23px; letter-spacing: -0.03em }
+    .logo .lm { color: var(--teal) } .logo .lr { color: var(--green) }
+    .logo .glyph { width: 30px; height: 30px; display: grid; place-items: center }
+    .nav-links { display: flex; gap: 34px; align-items: center }
+    .nav-links a { font: 500 15px/1 var(--body); color: var(--ink-70); transition: color .2s }
+    .nav-links a:hover { color: var(--teal) }
+    .nav-cta { display: flex; gap: 12px; align-items: center }
+    .nav-cta .login { font: 600 15px/1 var(--body); color: var(--teal); padding: 10px 6px }
+    .burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px }
+    .burger span { width: 24px; height: 2px; background: var(--teal); border-radius: 2px; transition: .3s }
+
+    /* ============ HERO ============ */
+    .hero { position: relative; padding: 64px 0 56px; overflow: hidden }
+    .hero::before { content: ""; position: absolute; inset: 0; background:
+      radial-gradient(60% 50% at 88% -8%, rgba(5,201,106,.10), transparent 60%),
+      radial-gradient(50% 60% at -6% 30%, rgba(6,62,86,.06), transparent 60%);
+      z-index: -1 }
+    .hero-grid { display: grid; grid-template-columns: 1.04fr .96fr; gap: 54px; align-items: center }
+    .hero-pill { display: inline-flex; align-items: center; gap: 10px; background: var(--white); border: 1px solid var(--line); padding: 8px 8px 8px 16px; border-radius: var(--r-pill); font: 600 13px/1 var(--body); color: var(--teal); box-shadow: var(--shadow-card); margin-bottom: 26px }
+    .hero-pill b { background: var(--green-12); color: var(--green-dk); padding: 6px 11px; border-radius: var(--r-pill); font-size: 12px }
+    .hero h1 { font-size: clamp(44px,5.6vw,80px); color: var(--teal) }
+    .hero h1 em { font-style: normal; color: var(--green); position: relative }
+    .hero p.sub { font-size: 19px; color: var(--ink-70); margin: 24px 0 0; max-width: 520px; line-height: 1.6 }
+    /* search */
+    .searchbar { margin-top: 34px; background: var(--white); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-hi); padding: 10px; display: flex; align-items: stretch; gap: 6px; max-width: 600px }
+    .search-toggle { display: flex; gap: 4px; background: var(--mist); padding: 4px; border-radius: var(--r-pill); margin-bottom: 14px; width: fit-content }
+    .search-toggle button { font: 600 14px/1 var(--body); padding: 9px 20px; border: none; background: none; border-radius: var(--r-pill); color: var(--ink-50); cursor: pointer; transition: .2s; display: flex; align-items: center; gap: 7px }
+    .search-toggle button.active { background: var(--white); color: var(--teal); box-shadow: 0 2px 8px rgba(6,62,86,.10) }
+    .search-toggle button svg { width: 16px; height: 16px }
+    .search-field { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 8px 16px; border-radius: var(--r-md); cursor: pointer; transition: background .2s; min-width: 0 }
+    .search-field:hover { background: var(--mist) }
+    .search-field label { font: 700 11px/1 var(--body); letter-spacing: .04em; color: var(--ink); margin-bottom: 5px }
+    .search-field span { font: 500 14px/1 var(--body); color: var(--ink-50); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+    .search-field+.search-field { border-left: 1px solid var(--line) }
+    .search-go { flex-shrink: 0; width: 54px; border-radius: var(--r-md); background: var(--green); border: none; cursor: pointer; display: grid; place-items: center; transition: .2s }
+    .search-go:hover { background: var(--green-dk) }
+    .search-go svg { width: 20px; height: 20px; stroke: #022B14 }
+    .hero-cta { display: flex; gap: 14px; margin-top: 26px; flex-wrap: wrap }
+    .hero-trust { display: flex; align-items: center; gap: 22px; margin-top: 34px; flex-wrap: wrap }
+    .hero-trust .avatars { display: flex }
+    .hero-trust .avatars img { width: 38px; height: 38px; border-radius: 50%; border: 2.5px solid #fff; margin-left: -12px; object-fit: cover }
+    .hero-trust .avatars img:first-child { margin-left: 0 }
+    .hero-trust .t-txt { font: 500 14px/1.4 var(--body); color: var(--ink-70) }
+    .hero-trust .t-txt b { color: var(--ink); font-weight: 700 }
+    .stars { color: var(--green); letter-spacing: 1px }
+
+    /* hero visual */
+    .hero-visual { position: relative }
+    .hero-photo { border-radius: var(--r-xl); overflow: hidden; box-shadow: var(--shadow-hi); aspect-ratio: 4/4.6; background: var(--mist) }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover }
+    .float-card { position: absolute; background: var(--white); border-radius: var(--r-md); box-shadow: var(--shadow-hi); padding: 14px 16px; display: flex; align-items: center; gap: 12px }
+    .fc-price { bottom: 26px; left: -26px }
+    .fc-price .ic { width: 42px; height: 42px; border-radius: 12px; background: var(--green-12); display: grid; place-items: center; color: var(--green-dk) }
+    .fc-price small { font: 600 11px/1 var(--body); color: var(--ink-50); display: block; margin-bottom: 3px }
+    .fc-price b { font: 700 17px/1 var(--body); color: var(--teal) }
+    .fc-verify { top: 28px; right: -22px; flex-direction: column; align-items: flex-start; gap: 6px }
+    .fc-verify .row { display: flex; align-items: center; gap: 8px }
+    .fc-verify .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px var(--green-12) }
+    .fc-verify b { font: 700 13px/1 var(--body); color: var(--teal) }
+    .fc-verify small { font: 500 11px/1 var(--body); color: var(--ink-50) }
+
+    /* logos strip */
+    .trust-strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 26px 0; margin-top: 18px }
+    .trust-strip .wrap { display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap }
+    .trust-strip .label { font: 600 12px/1 var(--body); letter-spacing:.14em;text-transform:uppercase;color:var(--ink-30);white-space:nowrap }
+    .trust-items { display: flex; gap: 38px; flex-wrap: wrap; align-items: center }
+    .trust-items .ti { font: 700 17px/1 var(--disp); color: var(--ink-30); letter-spacing:-.01em }
+
+    /* ============ SECTION SHELL ============ */
+    section.blk { padding: 96px 0 }
+    .sec-head { max-width: 680px; margin-bottom: 54px }
+    .sec-head h2 { font-size: clamp(34px,4vw,52px); color: var(--teal); margin-top: 18px }
+    .sec-head h2 em { font-style: normal; color: var(--green) }
+    .sec-head p { font-size: 18px; color: var(--ink-70); margin-top: 18px; line-height: 1.6 }
+    .sec-head.center { margin-left: auto; margin-right: auto; text-align: center }
+
+    /* ============ HOW IT WORKS ============ */
+    .how { background: var(--mist) }
+    .how-video { position: relative; border-radius: var(--r-xl); overflow: hidden; aspect-ratio: 16/8; box-shadow: var(--shadow-hi); background: var(--teal); margin-bottom: 54px }
+    .how-video img { width: 100%; height: 100%; object-fit: cover; opacity:.78 }
+    .how-video .overlay { position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,62,86,.15),rgba(6,62,86,.55));display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px }
+    .play-btn { width: 84px; height: 84px; border-radius: 50%; background: rgba(255,255,255,.92); border: none; cursor: pointer; display: grid; place-items:center; transition: transform .3s,box-shadow .3s; box-shadow:0 8px 30px rgba(0,0,0,.25) }
+    .play-btn:hover { transform:scale(1.07) }
+    .play-btn svg { width: 26px; height: 26px; margin-left: 4px; fill: var(--teal) }
+    .how-video .vcap { position:absolute;left:26px;bottom:24px;color:#fff }
+    .how-video .vcap b { font: 600 15px/1 var(--body) }
+    .how-video .vcap small { display:block;font:500 13px/1 var(--body);opacity:.8;margin-top:6px }
+    .journeys { display: grid; grid-template-columns: 1fr 1fr; gap: 28px }
+    .journey { background: var(--white); border: 1px solid var(--line); border-radius: var(--r-xl); padding: 38px }
+    .journey.partner { background: var(--teal); border-color: var(--teal) }
+    .journey-top { display: flex; align-items: center; gap: 12px; margin-bottom: 30px }
+    .journey-top .tag { font: 700 12px/1 var(--body); letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:var(--r-pill) }
+    .journey .tag-rent { background: var(--green-12); color: var(--green-dk) }
+    .journey .tag-prt { background: rgba(255,255,255,.14); color: var(--green) }
+    .journey h3 { font-size: 26px; color: var(--teal) }
+    .journey.partner h3 { color:#fff }
+    .steps { display: flex; flex-direction: column; gap: 4px; margin-top: 8px }
+    .step { display: flex; gap: 18px; align-items:flex-start;padding:18px 0;position:relative }
+    .step:not(:last-child)::after { content:""; position:absolute;left:21px;top:48px;bottom:-4px;width:2px;background:var(--line) }
+    .journey.partner .step:not(:last-child)::after { background:rgba(255,255,255,.12) }
+    .step .num { flex-shrink:0;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:700 16px/1 var(--disp);background:var(--mist);color:var(--teal);z-index:1 }
+    .journey.partner .step .num { background:rgba(255,255,255,.08);color:var(--green) }
+    .step .num.done { background: var(--green); color:#022B14 }
+    .step b { font: 700 17px/1.2 var(--body); display:block;color:var(--ink) }
+    .journey.partner .step b { color:#fff }
+    .step small { font: 400 14px/1.5 var(--body); color: var(--ink-50); display:block;margin-top:6px }
+    .journey.partner .step small { color:rgba(255,255,255,.6) }
+
+    /* ============ NEARBY MAP ============ */
+    .nearby-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 0; border: 1px solid var(--line); border-radius: var(--r-xl); overflow:hidden; box-shadow: var(--shadow-card) }
+    .map-pane { position:relative;background:var(--teal);min-height:560px;overflow:hidden }
+    .map-pane img { width: 100%; height: 100%; object-fit: cover; position:absolute;inset:0;opacity:.92 }
+    .map-pin { position:absolute;display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:transform .25s;z-index:2 }
+    .map-pin:hover { transform:translateY(-4px) scale(1.05);z-index:5 }
+    .map-pin .bubble { background:#fff;color:var(--teal);font:700 13px/1 var(--body);padding:8px 13px;border-radius:var(--r-pill);box-shadow:0 6px 16px rgba(0,0,0,.22);white-space:nowrap }
+    .map-pin .bubble.hot { background:var(--green);color:#022B14 }
+    .map-pin .pointer { width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #fff;margin-top:-1px }
+    .map-pin .pointer.hot { border-top-color:var(--green) }
+    .map-search { position:absolute;top:18px;left:18px;right:18px;background:#fff;border-radius:var(--r-pill);padding:12px 18px;display:flex;align-items:center;gap:10px;box-shadow:0 6px 18px rgba(0,0,0,.16);z-index:4 }
+    .map-search svg { width:18px;height:18px;stroke:var(--ink-50) }
+    .map-search span { font:500 14px/1 var(--body);color:var(--ink-50) }
+    .map-search .found { margin-left:auto;font:700 12px/1 var(--body);color:var(--green-dk);background:var(--green-12);padding:6px 11px;border-radius:var(--r-pill) }
+    .list-pane { background: var(--white); padding: 24px; overflow:hidden }
+    .list-pane .lp-head { display:flex;align-items:center;justify-content:space-between;margin-bottom:16px }
+    .list-pane .lp-head b { font:700 16px/1 var(--body);color:var(--teal) }
+    .list-pane .lp-head a { font:600 13px/1 var(--body);color:var(--green-dk) }
+    .mini-card { display:flex;gap:14px;padding:14px;border-radius:var(--r-md);border:1px solid var(--line);margin-bottom:12px;transition:.22s;cursor:pointer }
+    .mini-card:hover { border-color:var(--green);box-shadow:var(--shadow-card);transform:translateY(-2px) }
+    .mini-card .thumb { width:84px;height:72px;border-radius:var(--r-sm);overflow:hidden;flex-shrink:0;background:var(--mist) }
+    .mini-card .thumb img { width:100%;height:100%;object-fit:cover }
+    .mini-card .info { flex:1;min-width:0 }
+    .mini-card .info .nm { font:700 15px/1.2 var(--body);color:var(--ink) }
+    .mini-card .info .mt { font:500 12px/1 var(--body);color:var(--ink-50);margin-top:5px;display:flex;align-items:center;gap:6px }
+    .mini-card .info .mt svg { width:12px;height:12px;stroke:var(--ink-30) }
+    .mini-card .info .pr { margin-top:9px;font:700 14px/1 var(--body);color:var(--teal) }
+    .mini-card .info .pr span { font-weight:500;color:var(--ink-50);font-size:12px }
+    .mini-card .badge { align-self:flex-start;font:700 10px/1 var(--body);letter-spacing:.04em;text-transform:uppercase;padding:5px 9px;border-radius:var(--r-pill);background:var(--green-12);color:var(--green-dk) }
+
+    /* ============ TRENDING ============ */
+    .tabs { display:flex;gap:6px;background:var(--mist);padding:5px;border-radius:var(--r-pill);width:fit-content;margin:0 auto 46px }
+    .tabs button { font:600 15px/1 var(--body);padding:11px 28px;border:none;background:none;border-radius:var(--r-pill);color:var(--ink-50);cursor:pointer;transition:.2s }
+    .tabs button.active { background:var(--white);color:var(--teal);box-shadow:0 2px 10px rgba(6,62,86,.10) }
+    .cards { display:grid;grid-template-columns:repeat(3,1fr);gap:26px }
+    .vcard { background:var(--white);border:1px solid var(--line);border-radius:var(--r-xl);overflow:hidden;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s }
+    .vcard:hover { transform:translateY(-6px);box-shadow:var(--shadow-hi) }
+    .vcard .ph { position:relative;aspect-ratio:16/11;overflow:hidden;background:var(--mist) }
+    .vcard .ph img { width:100%;height:100%;object-fit:cover;transition:transform .5s }
+    .vcard:hover .ph img { transform:scale(1.05) }
+    .vcard .type-tag { position:absolute;top:14px;left:14px;font:700 11px/1 var(--body);letter-spacing:.05em;text-transform:uppercase;background:rgba(255,255,255,.94);color:var(--teal);padding:7px 12px;border-radius:var(--r-pill);backdrop-filter:blur(6px) }
+    .vcard .fav { position:absolute;top:13px;right:13px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.94);border:none;cursor:pointer;display:grid;place-items:center;transition:.2s }
+    .vcard .fav:hover { background:#fff;transform:scale(1.08) }
+    .vcard .fav svg { width:17px;height:17px;stroke:var(--teal);fill:none }
+    .vcard .av { position:absolute;bottom:13px;left:14px;font:700 11px/1 var(--body);background:var(--green);color:#022B14;padding:7px 12px;border-radius:var(--r-pill) }
+    .vcard .body { padding:22px }
+    .vcard .body .top { display:flex;justify-content:space-between;align-items:flex-start;gap:10px }
+    .vcard .body h3 { font-size:21px;color:var(--ink);letter-spacing:-.01em }
+    .vcard .body .rate { display:flex;align-items:center;gap:5px;font:700 14px/1 var(--body);color:var(--teal);flex-shrink:0 }
+    .vcard .body .rate svg { width:15px;height:15px;fill:var(--green) }
+    .vcard .body .loc { display:flex;align-items:center;gap:7px;font:500 14px/1 var(--body);color:var(--ink-50);margin-top:11px }
+    .vcard .body .loc svg { width:15px;height:15px;stroke:var(--ink-30);fill:none }
+    .vcard .body .specs { display:flex;gap:8px;margin-top:16px;flex-wrap:wrap }
+    .vcard .body .specs span { font:600 12px/1 var(--body);color:var(--teal);background:var(--mist);padding:7px 11px;border-radius:var(--r-pill) }
+    .vcard .body .foot { display:flex;align-items:center;justify-content:space-between;margin-top:20px;padding-top:18px;border-top:1px solid var(--line) }
+    .vcard .body .foot .price b { font:700 22px/1 var(--disp);color:var(--teal) }
+    .vcard .body .foot .price small { font:500 13px/1 var(--body);color:var(--ink-50) }
+    .vcard .body .foot .book { font:600 14px/1 var(--body);color:#022B14;background:var(--green);padding:11px 18px;border-radius:var(--r-pill);transition:.2s;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:7px }
+    .vcard .body .foot .book:hover { background:var(--green-dk) }
+    .vcard .body .foot .book svg { width:14px;height:14px }
+    .trend-more { text-align:center;margin-top:48px }
+
+    /* ============ WHY ============ */
+    .why { background:var(--ink);color:#fff;border-radius:0 }
+    .why .sec-head h2{color:#fff}.why .sec-head h2 em{color:var(--green)}
+    .why .sec-head p{color:rgba(255,255,255,.6)}
+    .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .why-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--r-xl);padding:40px 34px;transition:.3s;position:relative;overflow:hidden}
+    .why-card:hover{border-color:rgba(5,201,106,.4);background:rgba(5,201,106,.04);transform:translateY(-5px)}
+    .why-card .ic{width:58px;height:58px;border-radius:16px;background:var(--green-12);display:grid;place-items:center;color:var(--green);margin-bottom:26px}
+    .why-card .ic svg{width:27px;height:27px;stroke:var(--green);fill:none}
+    .why-card h3{font-size:24px;color:#fff;margin-bottom:14px}
+    .why-card p{font:400 15px/1.6 var(--body);color:rgba(255,255,255,.62)}
+    .why-card .idx{position:absolute;top:28px;right:32px;font:600 50px/1 var(--disp);color:rgba(255,255,255,.05)}
+
+    /* ============ PARTNER ============ */
+    .partner-blk{background:var(--mist)}
+    .partner-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:56px;align-items:center}
+    .partner-photo{border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-hi);aspect-ratio:3/3.4;position:relative;background:var(--teal)}
+    .partner-photo img{width:100%;height:100%;object-fit:cover}
+    .partner-stat{position:absolute;background:#fff;border-radius:var(--r-lg);padding:20px 24px;box-shadow:var(--shadow-hi)}
+    .partner-stat.s1{top:24px;left:-26px}
+    .partner-stat.s2{bottom:30px;right:-26px}
+    .partner-stat b{font:700 30px/1 var(--disp);color:var(--green-dk)}
+    .partner-stat small{display:block;font:600 12px/1.3 var(--body);color:var(--ink-50);margin-top:6px}
+    .partner-content h2{font-size:clamp(34px,4vw,50px);color:var(--teal)}
+    .partner-content h2 em{font-style:normal;color:var(--green)}
+    .partner-content>p{font-size:18px;color:var(--ink-70);margin:20px 0 36px;line-height:1.6;max-width:520px}
+    .benefits{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:38px}
+    .benefit{display:flex;gap:14px;align-items:flex-start}
+    .benefit .bi{flex-shrink:0;width:42px;height:42px;border-radius:12px;background:var(--white);border:1px solid var(--line);display:grid;place-items:center;color:var(--green-dk)}
+    .benefit .bi svg{width:20px;height:20px;stroke:var(--green-dk);fill:none}
+    .benefit b{font:700 16px/1.2 var(--body);color:var(--ink);display:block}
+    .benefit small{font:400 13px/1.5 var(--body);color:var(--ink-50);display:block;margin-top:5px}
+    .partner-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+    .partner-cta .note{font:500 13px/1.4 var(--body);color:var(--ink-50)}
+
+    /* ============ FINAL CTA ============ */
+    .final{padding:0}
+    .final-grid{display:grid;grid-template-columns:1fr 1fr;border-radius:var(--r-xl);overflow:hidden;max-width:var(--max);margin:0 auto;box-shadow:var(--shadow-hi)}
+    .final-side{padding:72px 60px;position:relative;overflow:hidden}
+    .final-rent{background:linear-gradient(150deg,var(--teal),#0a5673)}
+    .final-prt{background:linear-gradient(150deg,#04361e,var(--green-dk))}
+    .final-side .eyebrow{color:rgba(255,255,255,.7)}
+    .final-side .eyebrow::before{background:rgba(255,255,255,.9)}
+    .final-side h2{font-size:clamp(30px,3.4vw,42px);color:#fff;margin:20px 0 16px}
+    .final-side p{font:400 16px/1.6 var(--body);color:rgba(255,255,255,.78);margin-bottom:30px;max-width:380px}
+    .final-side .deco{position:absolute;right:-40px;bottom:-50px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.06)}
+
+    /* ============ FOOTER ============ */
+    footer{background:var(--ink);color:#fff;padding:74px 0 0}
+    .foot-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:36px;padding-bottom:54px}
+    .foot-brand .logo{margin-bottom:20px}
+    .foot-brand .logo .lm{color:#fff}
+    .foot-brand p{font:400 15px/1.6 var(--body);color:rgba(255,255,255,.55);max-width:280px;margin-bottom:24px}
+    .foot-social{display:flex;gap:12px}
+    .foot-social a{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.06);display:grid;place-items:center;transition:.2s}
+    .foot-social a:hover{background:var(--green);transform:translateY(-2px)}
+    .foot-social svg{width:18px;height:18px;fill:#fff}
+    .foot-col h4{font:700 13px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:#fff;margin-bottom:22px}
+    .foot-col a{display:block;font:400 15px/1 var(--body);color:rgba(255,255,255,.55);margin-bottom:14px;transition:.2s}
+    .foot-col a:hover{color:var(--green)}
+    .foot-contact .ci{display:flex;align-items:center;gap:10px;font:500 14px/1.4 var(--body);color:rgba(255,255,255,.65);margin-bottom:14px}
+    .foot-contact .ci svg{width:16px;height:16px;stroke:var(--green);fill:none;flex-shrink:0}
+    .foot-bot{border-top:1px solid rgba(255,255,255,.08);padding:26px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .foot-bot p{font:400 14px/1 var(--body);color:rgba(255,255,255,.42)}
+    .foot-bot .links{display:flex;gap:26px}
+    .foot-bot .links a{font:400 14px/1 var(--body);color:rgba(255,255,255,.42);transition:.2s}
+    .foot-bot .links a:hover{color:#fff}
+
+    /* ============ FLOATING ACTION BUTTONS ============ */
+    .fab-stack{position:fixed;right:22px;bottom:24px;z-index:80;display:flex;flex-direction:column;gap:12px}
+    .fab{width:54px;height:54px;border-radius:50%;border:none;cursor:pointer;display:grid;place-items:center;box-shadow:var(--shadow-float);transition:transform .25s,box-shadow .25s;position:relative}
+    .fab:hover{transform:scale(1.08) translateY(-2px)}
+    .fab svg{width:25px;height:25px;fill:#fff}
+    .fab.call{background:var(--teal)}
+    .fab.wa{background:#25D366}
+    .fab.msg{background:#0084FF}
+    .fab .tip{position:absolute;right:64px;top:50%;transform:translateY(-50%);background:var(--ink);color:#fff;font:600 12px/1 var(--body);padding:8px 12px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s}
+    .fab .tip::after{content:"";position:absolute;left:100%;top:50%;transform:translateY(-50%);border:5px solid transparent;border-left-color:var(--ink)}
+    .fab:hover .tip{opacity:1}
+    .fab .pulse{position:absolute;inset:0;border-radius:50%;animation:pulse 2.4s infinite}
+    .fab.call .pulse{box-shadow:0 0 0 0 rgba(6,62,86,.5)}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(5,201,106,.5)}70%{box-shadow:0 0 0 14px rgba(5,201,106,0)}100%{box-shadow:0 0 0 0 rgba(5,201,106,0)}}
+
+    /* ============ RESPONSIVE ============ */
+    @media(max-width:1080px){
+      .hero-grid,.partner-grid{grid-template-columns:1fr;gap:46px}
+      .hero-visual{max-width:520px;margin:0 auto}
+      .nearby-grid{grid-template-columns:1fr}
+      .map-pane{min-height:380px}
+      .cards{grid-template-columns:repeat(2,1fr)}
+      .why-grid{grid-template-columns:1fr}
+      .journeys{grid-template-columns:1fr}
+    }
+    @media(max-width:760px){
+      .wrap{padding:0 20px}.nav-in{padding:0 20px}
+      .nav-links,.nav-cta .login{display:none}
+      .burger{display:flex}
+      section.blk{padding:64px 0}
+      .cards{grid-template-columns:1fr}
+      .benefits{grid-template-columns:1fr}
+      .final-grid{grid-template-columns:1fr}
+      .final-side{padding:54px 32px}
+      .foot-top{grid-template-columns:1fr 1fr;gap:34px}
+      .foot-brand{grid-column:1/-1}
+      .searchbar{flex-wrap:wrap}
+      .search-field+.search-field{border-left:none;border-top:1px solid var(--line)}
+      .search-go{width:100%;height:50px}
+      .partner-stat.s1{left:-12px}.partner-stat.s2{right:-12px}
+      .float-card{display:none}
+      .foot-bot{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="nav">
+    <div class="nav-in">
+      <a href="#" class="logo" aria-label="MotoRent home">
+        <img src="Logo.svg" alt="MotoRent logo" width="150" height="46">
+      </a>
+      <nav class="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#nearby">Nearby</a>
+        <a href="#trending">Browse vehicles</a>
+        <a href="#partner">Become a partner</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="#" class="login">Log in</a>
+        <a href="#trending" class="btn btn-primary">
+          Rent a Vehicle
+          <svg viewBox="0 0 24 24" fill="none" stroke="#022B14" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy reveal">
+        <span class="hero-pill">Bangladesh's first P2P vehicle marketplace <b>NEW</b></span>
+        <h1>Rent any vehicle.<br>List yours.<br><em>Move freely.</em></h1>
+        <p class="sub">Find, compare and book verified bikes and cars near you in minutes — or turn your idle vehicle into income. One trusted platform for renters and rental businesses.</p>
+
+        <div class="search-toggle" id="searchToggle" style="margin-top:30px">
+          <button class="active" data-mode="bike">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="17" r="3.5"/><circle cx="18" cy="17" r="3.5"/><path d="M6 17l4-7h5l2 4M9 10l-1.5-3H5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Bikes
+          </button>
+          <button data-mode="car">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13l2-5h14l2 5M3 13v4h2m14-4v4h-2M5 17h14" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7.5" cy="17" r="1.5"/><circle cx="16.5" cy="17" r="1.5"/></svg>
+            Cars
+          </button>
+        </div>
+
+        <div class="searchbar">
+          <div class="search-field">
+            <label>Location</label>
+            <span>Gulshan, Dhaka</span>
+          </div>
+          <div class="search-field">
+            <label>Pick-up</label>
+            <span>Today · 10:00 AM</span>
+          </div>
+          <div class="search-field">
+            <label>Return</label>
+            <span>Tomorrow · 6:00 PM</span>
+          </div>
+          <button class="search-go" aria-label="Search vehicles">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+
+        <div class="hero-cta">
+          <a href="#trending" class="btn btn-dark">Rent a Vehicle
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#partner" class="btn btn-ghost">List Your Vehicles</a>
+        </div>
+
+        <div class="hero-trust">
+          <div class="avatars">
+            <img src="https://i.pravatar.cc/80?img=12" alt="">
+            <img src="https://i.pravatar.cc/80?img=32" alt="">
+            <img src="https://i.pravatar.cc/80?img=45" alt="">
+            <img src="https://i.pravatar.cc/80?img=68" alt="">
+          </div>
+          <div class="t-txt"><span class="stars">★★★★★</span> <b>4.9/5</b><br>from 2,400+ verified riders & owners</div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="hero-photo">
+          <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=900&q=80" alt="Rider on a scooter in the city">
+        </div>
+        <div class="float-card fc-price">
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 100 7h5a3.5 3.5 0 010 7H6" stroke-linecap="round"/></svg>
+          </div>
+          <div><small>From only</small><b>৳120 / hour</b></div>
+        </div>
+        <div class="float-card fc-verify">
+          <div class="row"><span class="dot"></span><b>KYC Verified</b></div>
+          <small>GPS tracked · Insured ride</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TRUST STRIP ===================== -->
+  <div class="trust-strip">
+    <div class="wrap">
+      <span class="label">Trusted by riders & rental partners across</span>
+      <div class="trust-items">
+        <span class="ti">Dhaka</span>
+        <span class="ti">Cox's Bazar</span>
+        <span class="ti">Chittagong</span>
+        <span class="ti">Sylhet</span>
+        <span class="ti">Rajshahi</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== HOW IT WORKS ===================== -->
+  <section class="blk how" id="how">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">How MotoRent works</span>
+        <h2>Two journeys. <em>One platform.</em></h2>
+        <p>Whether you want to ride or earn, MotoRent gets you moving in three simple steps. Watch how it works.</p>
+      </div>
+
+      <div class="how-video reveal">
+        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1400&q=80" alt="MotoRent platform demo">
+        <div class="overlay">
+          <button class="play-btn" aria-label="Play demo video">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="vcap">
+          <b>See MotoRent in action</b>
+          <small>2:14 · From search to ride, and from listing to first booking</small>
+        </div>
+      </div>
+
+      <div class="journeys">
+        <div class="journey reveal">
+          <div class="journey-top"><span class="tag tag-rent">For Renters</span></div>
+          <h3>Search → Compare → Ride</h3>
+          <div class="steps">
+            <div class="step"><div class="num">1</div><div><b>Search nearby</b><small>Set your location, dates and vehicle type. See every available bike and car around you on a live map.</small></div></div>
+            <div class="step"><div class="num">2</div><div><b>Compare with confidence</b><small>Check transparent pricing, ratings, trust scores and real reviews side by side — no hidden fees.</small></div></div>
+            <div class="step"><div class="num done">3</div><div><b>Book & ride instantly</b><small>Confirm in-app, complete a one-time KYC, and unlock your verified, insured ride in minutes.</small></div></div>
+          </div>
+        </div>
+
+        <div class="journey partner reveal">
+          <div class="journey-top"><span class="tag tag-prt">For Businesses</span></div>
+          <h3>Register → List → Earn</h3>
+          <div class="steps">
+            <div class="step"><div class="num">1</div><div><b>Register your business</b><small>Create your partner account, verify your documents, and join Bangladesh's fastest-growing rental network.</small></div></div>
+            <div class="step"><div class="num">2</div><div><b>List your vehicles</b><small>Add your fleet with photos, pricing and availability in minutes. Manage everything from one dashboard.</small></div></div>
+            <div class="step"><div class="num done">3</div><div><b>Receive bookings & grow</b><small>Get matched with nearby renters, accept bookings instantly, and track earnings & utilisation in real time.</small></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== NEARBY MAP ===================== -->
+  <section class="blk" id="nearby">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Nearby vehicles</span>
+        <h2>Find a ride <em>just around the corner.</em></h2>
+        <p>Live availability on the map, sorted by distance. Tap any pin to see pricing, ratings and book on the spot.</p>
+      </div>
+
+      <div class="nearby-grid reveal">
+        <div class="map-pane">
+          <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1000&q=80" alt="Map of nearby vehicles">
+          <div class="map-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5" stroke-linecap="round"/></svg>
+            <span>Gulshan, Dhaka</span>
+            <span class="found">18 nearby</span>
+          </div>
+          <div class="map-pin" style="top:32%;left:24%"><div class="bubble hot">৳120/hr</div><div class="pointer hot"></div></div>
+          <div class="map-pin" style="top:48%;left:54%"><div class="bubble">৳95/hr</div><div class="pointer"></div></div>
+          <div class="map-pin" style="top:60%;left:34%"><div class="bubble">৳800/day</div><div class="pointer"></div></div>
+          <div class="map-pin" style="top:38%;left:70%"><div class="bubble">৳150/hr</div><div class="pointer"></div></div>
+          <div class="map-pin" style="top:70%;left:62%"><div class="bubble">৳1,200/day</div><div class="pointer"></div></div>
+        </div>
+
+        <div class="list-pane">
+          <div class="lp-head"><b>Closest to you</b><a href="#trending">View all →</a></div>
+
+          <div class="mini-card">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=300&q=80" alt=""></div>
+            <div class="info">
+              <div class="nm">Hero Splendor Plus</div>
+              <div class="mt"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 0.8 km · South Badda</div>
+              <div class="pr">৳120 <span>/ hour</span></div>
+            </div>
+            <span class="badge">Available</span>
+          </div>
+
+          <div class="mini-card">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1558981852-426c6c22a060?w=300&q=80" alt=""></div>
+            <div class="info">
+              <div class="nm">Yamaha FZ-S V3</div>
+              <div class="mt"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 1.2 km · Gulshan 1</div>
+              <div class="pr">৳150 <span>/ hour</span></div>
+            </div>
+            <span class="badge">Top rated</span>
+          </div>
+
+          <div class="mini-card">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=300&q=80" alt=""></div>
+            <div class="info">
+              <div class="nm">Toyota Axio Hybrid</div>
+              <div class="mt"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 2.1 km · Banani</div>
+              <div class="pr">৳1,200 <span>/ day</span></div>
+            </div>
+            <span class="badge">Available</span>
+          </div>
+
+          <div class="mini-card">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=300&q=80" alt=""></div>
+            <div class="info">
+              <div class="nm">Honda Activa 6G</div>
+              <div class="mt"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 2.6 km · Rampura</div>
+              <div class="pr">৳95 <span>/ hour</span></div>
+            </div>
+            <span class="badge">Available</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TRENDING ===================== -->
+  <section class="blk how" id="trending">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <span class="eyebrow">Trending rentals</span>
+        <h2>Most-booked rides <em>this week</em></h2>
+        <p>Hand-picked, verified vehicles from our top-rated partners across the country.</p>
+      </div>
+
+      <div class="tabs reveal" id="trendTabs">
+        <button class="active" data-cat="all">All</button>
+        <button data-cat="bikes">Bikes</button>
+        <button data-cat="cars">Cars</button>
+      </div>
+
+      <div class="cards" id="trendCards">
+        <!-- card: bike -->
+        <article class="vcard reveal" data-cat="bikes">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1558981359-219d6364c9c8?w=600&q=80" alt="Yamaha FZ-S">
+            <span class="type-tag">Sports Bike</span>
+            <button class="fav" aria-label="Save"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-9C.5 8 2.5 4 6.5 4 9 4 12 6.5 12 6.5S15 4 17.5 4c4 0 6 4 4 8-2.5 4.4-9.5 9-9.5 9z" stroke-width="2"/></svg></button>
+            <span class="av">Available now</span>
+          </div>
+          <div class="body">
+            <div class="top">
+              <h3>Yamaha FZ-S V3</h3>
+              <span class="rate"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3L22 9.2l-5 4.8L18.2 21 12 17.4 5.8 21 7 14 2 9.2l7.1-.9z"/></svg>4.8</span>
+            </div>
+            <div class="loc"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Gulshan, Dhaka</div>
+            <div class="specs"><span>149cc</span><span>2 seats</span><span>Helmet incl.</span></div>
+            <div class="foot">
+              <div class="price"><b>৳150</b><small> / hour</small></div>
+              <button class="book">Book now <svg viewBox="0 0 24 24" fill="none" stroke="#022B14" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </article>
+
+        <!-- card: car -->
+        <article class="vcard reveal" data-cat="cars">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80" alt="Toyota sedan">
+            <span class="type-tag">Sedan</span>
+            <button class="fav" aria-label="Save"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-9C.5 8 2.5 4 6.5 4 9 4 12 6.5 12 6.5S15 4 17.5 4c4 0 6 4 4 8-2.5 4.4-9.5 9-9.5 9z" stroke-width="2"/></svg></button>
+            <span class="av">Available now</span>
+          </div>
+          <div class="body">
+            <div class="top">
+              <h3>Toyota Axio Hybrid</h3>
+              <span class="rate"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3L22 9.2l-5 4.8L18.2 21 12 17.4 5.8 21 7 14 2 9.2l7.1-.9z"/></svg>4.9</span>
+            </div>
+            <div class="loc"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Banani, Dhaka</div>
+            <div class="specs"><span>Hybrid</span><span>5 seats</span><span>AC · Auto</span></div>
+            <div class="foot">
+              <div class="price"><b>৳1,200</b><small> / day</small></div>
+              <button class="book">Book now <svg viewBox="0 0 24 24" fill="none" stroke="#022B14" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </article>
+
+        <!-- card: bike -->
+        <article class="vcard reveal" data-cat="bikes">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80" alt="Scooter">
+            <span class="type-tag">Scooter</span>
+            <button class="fav" aria-label="Save"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-9C.5 8 2.5 4 6.5 4 9 4 12 6.5 12 6.5S15 4 17.5 4c4 0 6 4 4 8-2.5 4.4-9.5 9-9.5 9z" stroke-width="2"/></svg></button>
+            <span class="av">Available now</span>
+          </div>
+          <div class="body">
+            <div class="top">
+              <h3>Honda Activa 6G</h3>
+              <span class="rate"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3L22 9.2l-5 4.8L18.2 21 12 17.4 5.8 21 7 14 2 9.2l7.1-.9z"/></svg>4.7</span>
+            </div>
+            <div class="loc"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Rampura, Dhaka</div>
+            <div class="specs"><span>110cc</span><span>Easy ride</span><span>Fuel saver</span></div>
+            <div class="foot">
+              <div class="price"><b>৳95</b><small> / hour</small></div>
+              <button class="book">Book now <svg viewBox="0 0 24 24" fill="none" stroke="#022B14" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </article>
+
+        <!-- card: bike -->
+        <article class="vcard reveal" data-cat="bikes">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&q=80" alt="Royal Enfield">
+            <span class="type-tag">Cruiser</span>
+            <button class="fav" aria-label="Save"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-9C.5 8 2.5 4 6.5 4 9 4 12 6.5 12 6.5S15 4 17.5 4c4 0 6 4 4 8-2.5 4.4-9.5 9-9.5 9z" stroke-width="2"/></svg></button>
+            <span class="av">Available now</span>
+          </div>
+          <div class="body">
+            <div class="top">
+              <h3>Royal Enfield Hunter</h3>
+              <span class="rate"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3L22 9.2l-5 4.8L18.2 21 12 17.4 5.8 21 7 14 2 9.2l7.1-.9z"/></svg>4.9</span>
+            </div>
+            <div class="loc"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Cox's Bazar</div>
+            <div class="specs"><span>350cc</span><span>Tour-ready</span><span>Beach roads</span></div>
+            <div class="foot">
+              <div class="price"><b>৳350</b><small> / hour</small></div>
+              <button class="book">Book now <svg viewBox="0 0 24 24" fill="none" stroke="#022B14" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </article>
+
+        <!-- card: car -->
+        <article class="vcard reveal" data-cat="cars">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=80" alt="SUV">
+            <span class="type-tag">SUV</span>
+            <button class="fav" aria-label="Save"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-9C.5 8 2.5 4 6.5 4 9 4 12 6.5 12 6.5S15 4 17.5 4c4 0 6 4 4 8-2.5 4.4-9.5 9-9.5 9z" stroke-width="2"/></svg></button>
+            <span class="av">Available now</span>
+          </div>
+          <div class="body">
+            <div class="top">
+              <h3>Toyota Harrier</h3>
+              <span class="rate"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3L22 9.2l-5 4.8L18.2 21 12 17.4 5.8 21 7 14 2 9.2l7.1-.9z"/></svg>4.8</span>
+            </div>
+            <div class="loc"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Dhanmondi, Dhaka</div>
+            <div class="specs"><span>2.0L</span><span>7 seats</span><span>Driver opt.</span></div>
+            <div class="foot">
+              <div class="price"><b>৳3,500</b><small> / day</small></div>
+              <button class="book">Book now <svg viewBox="0 0 24 24" fill="none" stroke="#022B14" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </article>
+
+        <!-- card: car -->
+        <article class="vcard reveal" data-cat="cars">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=600&q=80" alt="Compact car">
+            <span class="type-tag">Hatchback</span>
+            <button class="fav" aria-label="Save"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-9C.5 8 2.5 4 6.5 4 9 4 12 6.5 12 6.5S15 4 17.5 4c4 0 6 4 4 8-2.5 4.4-9.5 9-9.5 9z" stroke-width="2"/></svg></button>
+            <span class="av">Available now</span>
+          </div>
+          <div class="body">
+            <div class="top">
+              <h3>Suzuki Swift</h3>
+              <span class="rate"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3L22 9.2l-5 4.8L18.2 21 12 17.4 5.8 21 7 14 2 9.2l7.1-.9z"/></svg>4.6</span>
+            </div>
+            <div class="loc"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Uttara, Dhaka</div>
+            <div class="specs"><span>1.2L</span><span>5 seats</span><span>City-ready</span></div>
+            <div class="foot">
+              <div class="price"><b>৳2,200</b><small> / day</small></div>
+              <button class="book">Book now <svg viewBox="0 0 24 24" fill="none" stroke="#022B14" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="trend-more reveal">
+        <a href="#" class="btn btn-ghost">Browse all vehicles
+          <svg viewBox="0 0 24 24" fill="none" stroke="#063E56" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHY ===================== -->
+  <section class="blk why" id="why">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Why MotoRent</span>
+        <h2>Built on trust, <em>not luck.</em></h2>
+        <p>We replaced scattered WhatsApp threads and roadside guesswork with a transparent, verified marketplace.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <span class="idx">01</span>
+          <div class="ic"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M9 12l2 2 4-4M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Effortless booking</h3>
+          <p>Search, compare and confirm in under two minutes. Live availability, instant booking, and a seamless in-app experience from pickup to return.</p>
+        </div>
+        <div class="why-card reveal">
+          <span class="idx">02</span>
+          <div class="ic"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 100 7h5a3.5 3.5 0 010 7H6" stroke-linecap="round"/></svg></div>
+          <h3>Transparent pricing</h3>
+          <p>The price you see is the price you pay. Clear hourly, daily and weekly rates with no hidden charges, no surprise fees, and no haggling required.</p>
+        </div>
+        <div class="why-card reveal">
+          <span class="idx">03</span>
+          <div class="ic"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM4 21v-1a6 6 0 016-6h4a6 6 0 016 6v1" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Trusted partners</h3>
+          <p>Every owner and renter is KYC verified, every vehicle is GPS tracked, and every trip is insured. Real ratings and trust scores keep the community honest.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PARTNER ===================== -->
+  <section class="blk partner-blk" id="partner">
+    <div class="wrap partner-grid">
+      <div class="partner-photo reveal">
+        <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?w=800&q=80" alt="Rental business owner">
+        <div class="partner-stat s1"><b>+38%</b><small>Avg. monthly<br>booking uplift</small></div>
+        <div class="partner-stat s2"><b>৳57M</b><small>Partner earnings<br>processed</small></div>
+      </div>
+
+      <div class="partner-content reveal">
+        <span class="eyebrow">Become a partner</span>
+        <h2>Turn idle vehicles into <em>steady income.</em></h2>
+        <p>List your bikes and cars on Bangladesh's fastest-growing rental marketplace. Reach thousands of verified renters and manage your entire fleet from one simple dashboard.</p>
+
+        <div class="benefits">
+          <div class="benefit">
+            <div class="bi"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M3 17l6-6 4 4 8-8M21 7v5M21 7h-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><b>More bookings</b><small>Get matched with nearby renters actively searching for a ride.</small></div>
+          </div>
+          <div class="benefit">
+            <div class="bi"><svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><b>Better utilisation</b><small>Cut idle days with smart availability and demand insights.</small></div>
+          </div>
+          <div class="benefit">
+            <div class="bi"><svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14h5" stroke-linecap="round"/></svg></div>
+            <div><b>Simplified operations</b><small>Bookings, payments and tracking — all in one dashboard.</small></div>
+          </div>
+          <div class="benefit">
+            <div class="bi"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><b>Revenue growth</b><small>Scale from one vehicle to a full fleet with real-time analytics.</small></div>
+          </div>
+        </div>
+
+        <div class="partner-cta">
+          <a href="#" class="btn btn-primary">List Your Vehicles
+            <svg viewBox="0 0 24 24" fill="none" stroke="#022B14" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <span class="note">Free to list · Get your first booking in days</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FINAL CTA ===================== -->
+  <section class="blk final" id="final">
+    <div class="final-grid reveal">
+      <div class="final-side final-rent">
+        <span class="eyebrow">For Renters</span>
+        <h2>Your next ride is waiting nearby.</h2>
+        <p>Verified vehicles, transparent prices, and a booking that takes minutes. Move freely — without the burden of ownership.</p>
+        <a href="#trending" class="btn btn-white">Rent a Vehicle
+          <svg viewBox="0 0 24 24" fill="none" stroke="#063E56" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="deco"></div>
+      </div>
+      <div class="final-side final-prt">
+        <span class="eyebrow">For Partners</span>
+        <h2>Start earning from your fleet today.</h2>
+        <p>Join the marketplace built for rental businesses. List in minutes, get bookings, and grow your revenue with smart fleet tools.</p>
+        <a href="#partner" class="btn btn-white">List Your Vehicles
+          <svg viewBox="0 0 24 24" fill="none" stroke="#063E56" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="deco"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <a href="#" class="logo">
+            <img src="White & Light Green Logo EN.svg" alt="MotoRent logo" width="150" height="46">
+          </a>
+          <p>Bangladesh's first peer-to-peer vehicle renting & fleet management platform. Move freely — without the burden of ownership.</p>
+          <div class="foot-social">
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9h3V6h-3c-2 0-3 1.5-3 3.5V11H9v3h2v7h3v-7h2.5l.5-3H14V9.8c0-.5.3-.8.8-.8z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 8a4 4 0 100 8 4 4 0 000-8zm0 6.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5zM16.5 7.5h.01M7 3h10a4 4 0 014 4v10a4 4 0 01-4 4H7a4 4 0 01-4-4V7a4 4 0 014-4z" fill="none" stroke="#fff" stroke-width="1.8"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M6.5 8v9M6.5 5v.01M11 17.5v-5a2.5 2.5 0 015 0v5M11 11.5v6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></a>
+          </div>
+        </div>
+
+        <div class="foot-col">
+          <h4>For Renters</h4>
+          <a href="#trending">Browse bikes</a>
+          <a href="#trending">Browse cars</a>
+          <a href="#nearby">Nearby vehicles</a>
+          <a href="#how">How it works</a>
+          <a href="#">Trust & safety</a>
+        </div>
+
+        <div class="foot-col">
+          <h4>For Partners</h4>
+          <a href="#partner">List your vehicles</a>
+          <a href="#partner">Fleet dashboard</a>
+          <a href="#">Partner pricing</a>
+          <a href="#">Smart tracking</a>
+          <a href="#">Partner support</a>
+        </div>
+
+        <div class="foot-col">
+          <h4>Company</h4>
+          <a href="#">About us</a>
+          <a href="#why">Why MotoRent</a>
+          <a href="#">Careers</a>
+          <a href="#">Press</a>
+          <a href="#">Blog</a>
+        </div>
+
+        <div class="foot-col foot-contact">
+          <h4>Contact</h4>
+          <div class="ci"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 4h3l2 5-2 1.5a12 12 0 005.5 5.5L20 14l5 2v3a2 2 0 01-2 2A17 17 0 014 6a2 2 0 011-2z"/></svg>+880 1630-620785</div>
+          <div class="ci"><svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6" stroke-linecap="round"/></svg>hello@motorent.com.bd</div>
+          <div class="ci"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Gulshan, Dhaka, Bangladesh</div>
+          <h4 style="margin-top:26px">Legal</h4>
+          <a href="#">Terms of service</a>
+          <a href="#">Privacy policy</a>
+        </div>
+      </div>
+
+      <div class="foot-bot">
+        <p>© 2026 MotoRent. All rights reserved.</p>
+        <div class="links">
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Cookies</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== FLOATING ACTION BUTTONS ===================== -->
+  <div class="fab-stack">
+    <a class="fab call" href="tel:+8801630620785" aria-label="Call MotoRent">
+      <span class="pulse"></span>
+      <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.7.6.6 0 1 .5 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.5-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.7.1.4 0 .8-.3 1z"/></svg>
+      <span class="tip">Call us</span>
+    </a>
+    <a class="fab wa" href="https://wa.me/8801630620785" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.2.1.7-.1 1.2z"/></svg>
+      <span class="tip">WhatsApp</span>
+    </a>
+    <a class="fab msg" href="https://m.me/motorent" target="_blank" rel="noopener" aria-label="Messenger">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.3 2 2 6.2 2 11.6c0 2.9 1.3 5.5 3.4 7.2v3.5l3.2-1.8c.9.3 1.9.4 2.9.4 5.7 0 10-4.2 10-9.6S17.7 2 12 2zm1 12.9l-2.6-2.7-5 2.7 5.5-5.8 2.6 2.7 4.9-2.7-5.4 5.8z"/></svg>
+      <span class="tip">Messenger</span>
+    </a>
+  </div>
+
+  <script>
+    // nav shadow on scroll
+    const nav=document.getElementById('nav');
+    addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10));
+
+    // reveal on scroll
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3*70)+'ms';io.observe(el)});
+
+    // hero search bike/car toggle
+    document.querySelectorAll('#searchToggle button').forEach(b=>b.onclick=()=>{
+      document.querySelectorAll('#searchToggle button').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+    });
+
+    // trending tabs filter
+    const tabs=document.querySelectorAll('#trendTabs button');
+    const cards=document.querySelectorAll('#trendCards .vcard');
+    tabs.forEach(t=>t.onclick=()=>{
+      tabs.forEach(x=>x.classList.remove('active'));t.classList.add('active');
+      const c=t.dataset.cat;
+      cards.forEach(card=>{
+        const show=c==='all'||card.dataset.cat===c;
+        card.style.display=show?'':'none';
+      });
+    });
+
+    // favourite toggle
+    document.querySelectorAll('.fav').forEach(f=>f.onclick=e=>{
+      e.stopPropagation();const p=f.querySelector('path');
+      const on=f.dataset.on==='1';f.dataset.on=on?'0':'1';
+      p.setAttribute('fill',on?'none':'#05C96A');
+      p.setAttribute('stroke',on?'#063E56':'#05C96A');
+    });
+
+    // mobile burger (simple scroll-to-sections fallback)
+    document.querySelector('.burger').onclick=()=>document.getElementById('trending').scrollIntoView();
+  </script>
+</body>
+</html>
